@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 public class NoteIndicator : MonoBehaviour
 {
     public int noteNumber;
-    
+
     float initialScale = 1;
     float scale = 0;
     float scaleAnim = 0;
@@ -21,15 +21,17 @@ public class NoteIndicator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        propBlock = new MaterialPropertyBlock();
+        propBlock = new MaterialPropertyBlock(); // way to use multiple colors with GPU instancing
         initialScale = transform.localScale.x;
     }
 
-    int _countToUpdate;
-    int _lastMessageCount;
-
     // Update is called once per frame
     void Update()
+    {
+        receiveOrca();
+    }
+
+    void receiveOrca()
     {
         // ORCA
 
@@ -69,7 +71,7 @@ public class NoteIndicator : MonoBehaviour
         Ch15, 
         Ch16,
         All   
-
+    
         */
 
 
@@ -93,15 +95,16 @@ public class NoteIndicator : MonoBehaviour
 
         //transform.localScale = Vector3.one * (0.1f + MidiMaster.GetKey(noteNumber));
         //transform.localScale = Vector3.one * (scale + MidiMaster.GetKey(noteNumber));
+
         transform.Rotate(Vector3.one * (MidiMaster.GetKey(MidiChannel.Ch1, noteNumber)));
 
-        float value = (float)(noteNumber-23) / (128f-23f);
+        float value = (float)(noteNumber - 23) / (128f - 23f);
 
         var randomColors = Random.ColorHSV(value, value, 1, 1, .5f, .5f);
         var lerpColors = Color.Lerp(randomColors, Color.red, Mathf.PingPong(Time.time, value));
-        
 
-        var perlinColor = Color.Lerp(Color.white,Color.black, scalePerlin); // color from perlin animation
+
+        var perlinColor = Color.Lerp(Color.white, Color.black, scalePerlin); // color from perlin animation
 
         var color = Color.Lerp(perlinColor, Color.red, scaleAnim); // add red to the perlin animation
 
@@ -109,6 +112,19 @@ public class NoteIndicator : MonoBehaviour
         propBlock.SetColor("_Color", color);
         GetComponent<Renderer>().SetPropertyBlock(propBlock);
 
-       // Debug.Log(noteNumber);
+
+        float ch1Velocity = MidiMaster.GetKey(MidiChannel.Ch1, noteNumber);
+        var cubes = GameObject.Find("Generator").transform;
+
+        foreach (Transform child in cubes)
+        {
+            child.Rotate(Vector3.one * (MidiMaster.GetKey(MidiChannel.Ch1, noteNumber)));
+
+            Vector3 temp = child.transform.localScale;
+            temp.x = MidiMaster.GetKey(MidiChannel.Ch3, noteNumber) * 2;
+            temp.y = MidiMaster.GetKey(MidiChannel.Ch3, noteNumber) * 3;
+            temp.z = MidiMaster.GetKey(MidiChannel.Ch3, noteNumber) * 4;
+        }
+
     }
 }
