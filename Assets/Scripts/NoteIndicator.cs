@@ -74,10 +74,25 @@ public class NoteIndicator : MonoBehaviour
     
         */
 
+        // CHANNEL 1
+        float ch1Velocity = MidiMaster.GetKey(MidiChannel.Ch1, noteNumber);
+        var cubes = GameObject.Find("Generator").transform;
 
+        // CHANNEL 2
         scaleAnim += MidiMaster.GetKey(MidiChannel.Ch2, noteNumber) / 2f; // note devided by 10
         if (MidiMaster.GetKey(noteNumber) != 0) Debug.Log(MidiMaster.GetKey(noteNumber));
         scaleAnim -= (scaleAnim - 0) / 5; // fade back to zero
+   
+        // CHANNEL 3
+        foreach (Transform child in cubes)
+        {
+            child.Rotate(Vector3.one * (MidiMaster.GetKey(MidiChannel.Ch1, noteNumber)));
+
+            Vector3 temp = child.transform.localScale;
+            temp.x = MidiMaster.GetKey(MidiChannel.Ch3, noteNumber) * 2;
+            temp.y = MidiMaster.GetKey(MidiChannel.Ch3, noteNumber) * 3;
+            temp.z = MidiMaster.GetKey(MidiChannel.Ch3, noteNumber) * 4;
+        }
 
 
         // PERLIN
@@ -111,20 +126,6 @@ public class NoteIndicator : MonoBehaviour
         // color = Random.ColorHSV(value, value,1,1,.5f,.5f);
         propBlock.SetColor("_Color", color);
         GetComponent<Renderer>().SetPropertyBlock(propBlock);
-
-
-        float ch1Velocity = MidiMaster.GetKey(MidiChannel.Ch1, noteNumber);
-        var cubes = GameObject.Find("Generator").transform;
-
-        foreach (Transform child in cubes)
-        {
-            child.Rotate(Vector3.one * (MidiMaster.GetKey(MidiChannel.Ch1, noteNumber)));
-
-            Vector3 temp = child.transform.localScale;
-            temp.x = MidiMaster.GetKey(MidiChannel.Ch3, noteNumber) * 2;
-            temp.y = MidiMaster.GetKey(MidiChannel.Ch3, noteNumber) * 3;
-            temp.z = MidiMaster.GetKey(MidiChannel.Ch3, noteNumber) * 4;
-        }
 
     }
 }

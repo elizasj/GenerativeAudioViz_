@@ -25,19 +25,17 @@ public class PhyloPatternGen : MonoBehaviour
             for (int v = 0; v < 8; v++) //note = velocity
             {
 
-                var angle = (i * 137.5f) * Mathf.Rad2Deg; // 137.3 // 137.6
-                var radius = scaleOfRadius * Mathf.Sqrt(i);
+                float angle = (i * 137.5f) * Mathf.Rad2Deg; // 137.3 // 137.6
+                float radius = scaleOfRadius * Mathf.Sqrt(i);
 
-                var x = radius * Mathf.Cos(angle);
-                var y = radius * Mathf.Sin(angle);
-                //var z = radius * Mathf.Atan(angle);
-                var z = radius * pointiness;
+                float x = radius * Mathf.Cos(angle);
+                float y = radius * Mathf.Sin(angle);
+                float z = radius * pointiness;
 
                 GameObject shape = Instantiate(cube, new Vector3(x, y, z), Quaternion.identity); // default pos 0,0,0
                 shape.name = "shape";
                 shape.transform.parent = GameObject.Find("Generator").transform;
                 shape.transform.LookAt(Vector3.zero, Vector3.forward);
-                //shape.transform.localScale = new Vector3(0, 0, 0);
                 shape.SetActive(true);
 
                 // connect shape to Orca
@@ -51,34 +49,5 @@ public class PhyloPatternGen : MonoBehaviour
             }
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        /*
-        if (numOfShapes <= 105)
-        {
-
-            var angle = (numOfShapes * 137.5f) * Mathf.Rad2Deg; // 137.3 // 137.6
-            var radius = scaleOfRadius * Mathf.Sqrt(numOfShapes);
-
-            var x = radius * Mathf.Cos(angle);
-            var y = radius * Mathf.Sin(angle);
-            //var z = radius * Mathf.Atan(angle);
-            var z = radius * pointiness;
-
-            GameObject shape = Instantiate(cube, new Vector3(x, y, z), Quaternion.identity); // default pos 0,0,0
-            shape.name = "shape";
-            shape.transform.parent = GameObject.Find("Generator").transform;
-            shape.transform.LookAt(shape.transform.parent,  Vector3.left);
-            shape.SetActive(true);
-
-            // connect shape to Orca
-            NoteIndicator noteIndicator = shape.AddComponent<NoteIndicator>();
-            noteIndicator.noteNumber = numOfShapes;     
-        }
-
-        numOfShapes++;
-        */
-    }
+ 
 }
