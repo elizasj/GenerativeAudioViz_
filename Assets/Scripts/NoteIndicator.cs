@@ -87,17 +87,7 @@ public class NoteIndicator : MonoBehaviour
         scalePerlin = Mathf.PerlinNoise((float)velocity / 10 + Time.time, (float)channel / 10);
         scale = initialScale + scalePerlin + scaleAnim; // original scale, additional waviness, scale from notes from orca
 
-        /*scale += .01f;
-        scale = Mathf.Min(scale, initialScale);
-        transform.localScale = new Vector3(scale, scale, scale);*/
-
-
-        //scale = initialScale + scaleAnim;
-
         transform.localScale = new Vector3(scale, scale, scale);
-
-        //transform.localScale = Vector3.one * (0.1f + MidiMaster.GetKey(noteNumber));
-        //transform.localScale = Vector3.one * (scale + MidiMaster.GetKey(noteNumber));
 
         transform.Rotate(Vector3.one * (MidiMaster.GetKey(MidiChannel.Ch1, noteNumber)));
 
@@ -111,7 +101,6 @@ public class NoteIndicator : MonoBehaviour
 
         var color = Color.Lerp(perlinColor, Color.red, scaleAnim); // add red to the perlin animation
 
-        // color = Random.ColorHSV(value, value,1,1,.5f,.5f);
         propBlock.SetColor("_Color", color);
         GetComponent<Renderer>().SetPropertyBlock(propBlock);
 

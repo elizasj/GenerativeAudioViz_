@@ -38,13 +38,14 @@ public class PhyloPatternGen : MonoBehaviour
                 shape.transform.LookAt(Vector3.zero, Vector3.forward);
                 shape.SetActive(true);
 
-
+                /*
                 // connect shape to Orca
                 NoteIndicator noteIndicator = shape.AddComponent<NoteIndicator>();
                 noteIndicator.noteNumber = i;
 
                 noteIndicator.channel = c;
                 noteIndicator.velocity = v;
+                */
 
                 i++;
             }
