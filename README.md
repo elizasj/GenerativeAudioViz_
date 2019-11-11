@@ -1,2 +1,4 @@
 # GenerativeAudioViz_
-Workshop: Generative Audio Visuals w/Unity, Ableton &amp; Orca
+
+_A workshop about real-time graphics and sound programing techniques with Unity, Ableton Live & Orca_
+
