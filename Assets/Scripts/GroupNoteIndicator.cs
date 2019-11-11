@@ -12,7 +12,7 @@ public class GroupNoteIndicator : MonoBehaviour
         float totalVelocity_ch1 = 0f;
         float totalVelocity_ch2 = 0f;
 
-        for (int i = 0; i < 128; i++) // total number of midi channels available
+        for (int i = 0; i < 128; i++) // total number of midi notes available
         {
             totalVelocity_ch1 += MidiMaster.GetKey(MidiChannel.Ch1, i);
             totalVelocity_ch2 += MidiMaster.GetKey(MidiChannel.Ch2, i);
