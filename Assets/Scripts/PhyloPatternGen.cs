@@ -25,27 +25,29 @@ public class PhyloPatternGen : MonoBehaviour
             for (int v = 0; v < 8; v++) //note = velocity
             {
 
-                float angle = (i * 137.5f) * Mathf.Rad2Deg; // 137.3 // 137.6
+                // Golden Ratio / phyllotaxis math
+                float angle = (i * 137.5f) * Mathf.Rad2Deg; // 137.3 // 137.6 <-- play with angles to test out different visual patterns
                 float radius = scaleOfRadius * Mathf.Sqrt(i);
 
                 float x = radius * Mathf.Cos(angle);
                 float y = radius * Mathf.Sin(angle);
-                float z = radius * pointiness;
+                float z = radius * pointiness; 
 
+                // creating all the cubes with Instantiate
                 GameObject shape = Instantiate(cube, new Vector3(x, y, z), Quaternion.identity); // default pos 0,0,0
                 shape.name = "shape";
-                shape.transform.parent = GameObject.Find("Generator").transform;
-                shape.transform.LookAt(Vector3.zero, Vector3.forward);
-                shape.SetActive(true);
+                shape.transform.parent = GameObject.Find("Generator").transform; // seting the parent of all cubes to be the GameObject this script is attached to
+                shape.transform.LookAt(Vector3.zero, Vector3.forward); // make all cubes direct themselves at (0,0,0)
+                shape.SetActive(true); // make cubes visible 
 
-                /*
+                
                 // connect shape to Orca
                 NoteIndicator noteIndicator = shape.AddComponent<NoteIndicator>();
-                noteIndicator.noteNumber = i;
+                noteIndicator.noteNumber = i; // give each cube a noteNumber (MIDI note number)
 
-                noteIndicator.channel = c;
-                noteIndicator.velocity = v;
-                */
+                noteIndicator.channel = c; // refers to first loop
+                noteIndicator.velocity = v; // resers to second loop
+                
 
                 i++;
             }

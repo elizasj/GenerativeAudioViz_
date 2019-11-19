@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using MidiJack;
-using System.Runtime.InteropServices;
-
 
 public class NoteIndicator : MonoBehaviour
 {
@@ -16,7 +14,7 @@ public class NoteIndicator : MonoBehaviour
     public int velocity = 0;
 
 
-    private MaterialPropertyBlock propBlock;
+    private MaterialPropertyBlock propBlock; // useful for performance when many meshes need to be managed
 
     // Start is called before the first frame update
     void Start()
@@ -75,12 +73,14 @@ public class NoteIndicator : MonoBehaviour
         */
 
         // CHANNEL 1
-        float ch1Velocity = MidiMaster.GetKey(MidiChannel.Ch1, noteNumber);
+        float ch1Velocity = MidiMaster.GetKey(MidiChannel.Ch1, noteNumber); // grabs all notes being played on Channel1
         var cubes = transform.parent;
 
         // CHANNEL 2
-        scaleAnim += MidiMaster.GetKey(MidiChannel.Ch2, noteNumber) / 2f; // note devided by 10
-        if (MidiMaster.GetKey(noteNumber) != 0) Debug.Log(MidiMaster.GetKey(noteNumber));
+        scaleAnim += MidiMaster.GetKey(MidiChannel.All, noteNumber) / 10f; // note devided by 10
+
+        if (MidiMaster.GetKey(noteNumber) != 0) Debug.Log(MidiMaster.GetKey(noteNumber)); // log notes being played on any channel
+
         scaleAnim -= (scaleAnim - 0) / 5; // fade back to zero
 
         // PERLIN
@@ -94,12 +94,12 @@ public class NoteIndicator : MonoBehaviour
         float value = (float)(noteNumber - 23) / (128f - 23f);
 
         var randomColors = Random.ColorHSV(value, value, 1, 1, .5f, .5f);
-        var lerpColors = Color.Lerp(randomColors, Color.red, Mathf.PingPong(Time.time, value));
+        var lerpColors = Color.Lerp(randomColors, Color.red, Mathf.PingPong(ch1Velocity, value));
 
 
-        var perlinColor = Color.Lerp(Color.white, Color.black, scalePerlin); // color from perlin animation
+        var perlinColor = Color.Lerp(Color.yellow, Color.magenta, scalePerlin); // color from perlin animation
 
-        var color = Color.Lerp(perlinColor, Color.red, scaleAnim); // add red to the perlin animation
+        var color = Color.Lerp(perlinColor, Color.blue, scaleAnim); // add blue to the perlin animation
 
         propBlock.SetColor("_Color", color);
         GetComponent<Renderer>().SetPropertyBlock(propBlock);
