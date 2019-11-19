@@ -2,6 +2,8 @@
 
 This workshop will take you through some concepts to know when getting started with the different software, and how to get everything to play nice together. The contents of this repo and the goal of this workshop is to give you a starting point. The information presented here is by no means exhaustive, but I've included links to sources and resources for you to further  explore the ideas presented. The scripts included in the Unity project are also full of comments, so keep your eyes peeled for hints and explanations in the code. 
 
+### Table of Contents
+
 - [Unity Basics](#unity-basics)
 - [Orca Basics](#orca-basics)
 - [Live Basics](#live-basics)
