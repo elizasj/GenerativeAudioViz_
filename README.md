@@ -9,7 +9,7 @@ _A workshop about real-time graphics and sound programing techniques with Unity,
 
 ### Introduction
 
-The goal of this workshop is to explore the simultaneous creation of audio and visual elements through the use of MIDI and the creation of sequencers created and piloted with ORCA in real-time. Orca will send signals to Unity and Live respectively and will power both sound and visuals.
+The goal of this workshop is to explore the simultaneous creation of audio and visual elements through the use of MIDI and the creation of sequencers created and piloted with Orca in real-time. Orca will send signals to Unity and Live respectively and will power both sound and visuals.
 
 ### Motivation
 
