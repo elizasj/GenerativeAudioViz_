@@ -15,6 +15,6 @@ The goal of this workshop is to explore the simultaneous creation of audio and v
 
 I've always been interested in the link between audio and visual elements in performance, in illustrating the push and pull they exert on each other and developing fun ways of coupling and decoupling these two elements. Illustrating the creative process in real-time and experimenting live are also exciting areas of exploration, with [Algorave](https://en.wikipedia.org/wiki/Algorave)  and the [Live Coding](https://en.wikipedia.org/wiki/Live_coding) scene being great examples of this. 
 
-Which led me to think, _why not combine all the things?_ 
+_Why not combine all the things?_ 
 
 - [workshop](https://github.com/elizasj/GenerativeAudioViz_/blob/master/WORKSHOP.md)
