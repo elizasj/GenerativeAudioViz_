@@ -17,3 +17,4 @@ I've always been interested in the link between audio and visual elements in per
 
 Which led me to think, _why not combine all the things?_ 
 
+- [workshop](https://github.com/elizasj/GenerativeAudioViz_/blob/master/WORKSHOP.md)
