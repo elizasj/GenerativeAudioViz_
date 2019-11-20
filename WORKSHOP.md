@@ -114,7 +114,7 @@ __Lerp__ is short for [_Linear Interpolation_](https://en.wikipedia.org/wiki/Lin
 
 ### Conclusion
 
-You know have all the elements you need to get started making interesting visual and auditory experiments. Once you've created a visual playground you're satisfied with, you can build your Unity project into an app and perform it with Orca in real-time.
+You know have all the elements you need to get started making some interesting visual & sound experiments. Once you've created a playground you're satisfied with in Unity, and have selected the sounds you enjoy in Live, you can build your Unity project into an app and perform it with Orca in real-time.
 
 Some hints to push things further: 
 - look at [Colliders](https://docs.unity3d.com/Manual/CollidersOverview.html) and the [RigidBody](https://docs.unity3d.com/ScriptReference/Rigidbody.html) component to take advantage of Unity's built in physics system
